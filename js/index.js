@@ -1,6 +1,7 @@
 const vaciarCarrito = [];
 let llenarCarrito = [];
 let total = 0
+let cantidad;
 
 
 const bandas = [
@@ -14,28 +15,78 @@ const bandas = [
 
 // FUNCION ELECCION CANTIAD DE ENTRADAS
 
+
+
+
+
 function eligiendoCantidadEntradasQueen () {       
     let agregarAlCarrito = document.getElementById("carritoQueen").value;
     switch (agregarAlCarrito) {
         case(agregarAlCarrito):
-        let cantidad = bandas[0].precio * agregarAlCarrito;                     
+        cantidad = bandas[0].precio * agregarAlCarrito;    
+        
+    }   
+    let btn1 = document.getElementById("queen3");
+        btn1.onclick = () => {            
+            llenarCarrito.push(cantidad); 
+            console.log(llenarCarrito);      
+            
     }
+
+    
+    btn1.addEventListener("click", validarFormulario);
+
+    function validarFormulario(e) {
+        e.preventDefault(); 
+        
+    }  
+    
+
 }
 
 function eligiendoCantidadEntradasPink () {       
     let agregarAlCarrito = document.getElementById("carritoPink").value;
     switch (agregarAlCarrito) {
         case(agregarAlCarrito):
-        let cantidad = bandas[1].precio * agregarAlCarrito;                                 
+        cantidad = bandas[1].precio * agregarAlCarrito;                                 
     }
+    let btn1 = document.getElementById("pink3");
+        btn1.onclick = () => {            
+            llenarCarrito.push(cantidad); 
+            console.log(llenarCarrito);      
+            
+    }
+
+    
+    btn1.addEventListener("click", validarFormulario);
+
+    function validarFormulario(e) {
+        e.preventDefault(); 
+        
+    }  
+    
 }
 
 function eligiendoCantidadEntradasRed () {       
     let agregarAlCarrito = document.getElementById("carritoRed").value;
     switch (agregarAlCarrito) {
         case(agregarAlCarrito):
-        let cantidad = bandas[2].precio * agregarAlCarrito;   
+        cantidad = bandas[2].precio * agregarAlCarrito;   
     }
+    let btn1 = document.getElementById("rhcp3");
+        btn1.onclick = () => {            
+            llenarCarrito.push(cantidad); 
+            console.log(llenarCarrito);      
+            
+    }
+
+    
+    btn1.addEventListener("click", validarFormulario);
+
+    function validarFormulario(e) {
+        e.preventDefault(); 
+        
+    }  
     
    
 }
@@ -50,7 +101,7 @@ function formularioCompraEntradasQueen () {
     <p>${bandas[0].hora} hs.</p>
     <p>$ ${bandas[0].precio} c/u.</p>
     <button id="queen" type="submit" >+ info</button>
-    <form>
+    <form id="carritoQueen2">
     <select id="carritoQueen" name="producto" onchange="eligiendoCantidadEntradasQueen();">
     <option selected>Ingrese la cantidad de entradas que desea comprar</option>
     <option value="1">1</option>
@@ -58,7 +109,7 @@ function formularioCompraEntradasQueen () {
     <option value="3">3</option>
     <option value="4">4</option>
     </select>
-    <button class="carrito" type="submit">Agregar al carrito</button>   
+    <button id="queen3" type="submit">Agregar al carrito</button>   
     </form>`;    
 }
 function formularioCompraEntradasPink () {
@@ -77,7 +128,7 @@ function formularioCompraEntradasPink () {
     <option value="3">3</option>
     <option value="4">4</option>
     </select>
-    <button class="carrito" type="submit">Agregar al carrito</button>   
+    <button id="pink3" type="submit">Agregar al carrito</button>   
     </form>`;    
 }
 function formularioCompraEntradasRhcp () {
@@ -96,7 +147,7 @@ function formularioCompraEntradasRhcp () {
     <option value="3">3</option>
     <option value="4">4</option>
     </select>
-    <button class="carrito" type="submit">Agregar al carrito</button>   
+    <button id="rhcp3" type="submit">Agregar al carrito</button>   
     </form>`;    
 }
 
@@ -116,16 +167,7 @@ botonMasInfo[3].onclick = () => {
 
 // EVENTO CLICK EN AGREGAR AL CARRITO
 
-
-let btnAgregarAlCarrito = document.querySelectorAll(".carrito");
-btnAgregarAlCarrito.onclick = (e) => {
-    e.preventDefault ();
-        console.log("Diste click");
-    
-}
-
-
-
+ 
 
 
 
