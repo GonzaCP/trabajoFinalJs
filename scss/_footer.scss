@@ -1,0 +1,15 @@
+.pie{      
+    height: $width-100;
+    text-align: $alignText;          
+}
+.pie__icon--sm{
+    width: $sizeH3;
+    margin: 10px 0px;   
+}
+footer:hover{
+    width: $width-100;
+  //map-get
+  background: map-get($map: $bgColor, $key: 'hover');
+    cursor: pointer;
+    transition: all 2.5s;
+}

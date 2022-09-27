@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Recitales y películas, todo en un sitio y con links que te dirigen hacia la compra de entradas. Todas las novedades.">
+    <meta name="keywords" content="recitales, conciertos, eventos, cine, peliculas, rodaje." >
+    <title>CINEROCK</title>
+    <link rel="shortcut icon" href="img/favicon.ico">   
+    <!-- bootstrap link css -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
+    <!-- mi css -->
+    <link rel="stylesheet" href="css/index.css">  
+</head>
+<body>     
+    <header>    
+        <!-- bt -->
+        <nav class="navbar navbar-expand-md">
+            <div class="container-fluid">
+            <a class="navbar-brand" href="index.html">
+                <img src="cultura_musical.png" alt="logo principal del sitio" id="nav_img">
+            </a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar_toggler_icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarSupportedContent">
+                <ul class="navbar-nav ms-auto mb-2 mb-lg-0">
+                <li class="nav-item">
+                    <a href="#"><img src="img/carritoCompras2.png" alt="Carrito de compras" href="pages/recitales.html"></a>
+                </li>                
+                </ul>           
+            </div>
+            </div>
+        </nav>
+    <!-- end bt -->
+    </header>
+<main> 
+    <div>
+        <h1 class="font_h1">¡Mirá todos los recitales que se vienen!</h1>      
+    </div>   
+    <section class="section__recitales">
+        <div>
+            <h2 class="font_h2">Agenda 2022</h2>
+        </div>
+        <div>
+            <div id="contenedor">
+            </div>
+            <div id="selectorQueen" class="seleccion">
+                <h3>Queen</h3>
+                <p>Wembley Stadium - 15-12-1986 / 22 hs.</p>
+                <button id="queen" type="submit" >+ info</button>               
+            </div>
+            <div id="selectorPink" class="seleccion">
+                <h3>Pink Floyd</h3>
+                <p>Carino Magic - 15-12-2022 / 21 hs. </p>
+                <button id="pink" type="submit" >+ info</button>
+            </div>
+            <div id="selectorRed" class="seleccion">
+                <h3>Red Hot Chili Peppers</h3>                
+                <p>Slane Castle - 30-10-2022 / 22 hs.</p> 
+                <button id="rhcp" type="submit" >+ info</button> 
+            </div>            
+        </div>
+    </section> 
+    <div class="main__div main__div2 main__div3">
+        <p class="wP" id="wP">Esta página es posible gracias a los siguientes complejos</p>       
+        <img src="img/cine_espanol.jfif" alt="logo de Cine Español" class="sizeImg">
+        <img src="img/cinemark.jfif" alt="logo de Cinemarkhoyts" class="sizeImg">
+        <img src="img/cinepolis.jpg" alt="logo de Cinépolis" class="sizeImg">
+        <img src="img/mood_live.jfif" alt="logo de Moodlive" class="sizeImg">
+        <img src="img/ruca_che.jfif" alt="logo de Ruca Che" class="sizeImg"> 
+        <img src="img/pirkas.jfif" alt="logo de Pirkas" class="sizeImg">         
+    </div>     
+</main> 
+    <footer class="pie">
+        <h4>Seguinos en nuestras redes</h4>
+        <a href="https://twitter.com/cineRock" target="_blank">
+            <img src="img/twitter.png" alt="logo de Twitter" class="pie__icon--sm"></a>
+        <a href="https://facebook.com/cineRock" target="_blank">
+            <img src="img/facebook.png" alt="logo de Facebook" class="pie__icon--sm"></a>
+    </footer> 
+    <!-- JAVASCRIPT -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous"></script>
+    <script src="js/index.js"></script>
+
+</body>
+</html>

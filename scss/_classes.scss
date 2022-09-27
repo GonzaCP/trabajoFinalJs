@@ -1,0 +1,83 @@
+@mixin d_flex($flex_d, $align_i, $justify_c, $margin){
+    display: flex; 
+    flex-direction: $flex_d;
+    align-items: $align_i;
+    justify-content: $justify_c;
+    margin: $margin;
+}    
+/* index classes */
+.peliculas{
+   background: none;
+   padding: 20px;
+}
+.section__peliculas{
+    //mixing
+    @include d_flex(column, center, space-around, auto);
+    line-height: $lineHeight;   
+}
+.img_size{
+    height: $imgSize;
+}
+.main__div{      
+   height: 150px;
+   padding: 10px 30px;  
+   //mixing
+   @include d_flex(row, flex , space-around, 10px 20px);  
+   //map-get
+   background: map-get($map: $bgColor, $key: 'div');
+}
+.wP{
+    width: 18%;
+}
+/* recitales classes */
+.section__recitales{
+    //map-get
+    background: map-get($map: $bgColor, $key: 'main');
+    line-height: $lineHeight;    
+    margin-bottom: 0; 
+}
+/* cine classes */
+.main__div--cine{  
+    //mixing 
+    @include d_flex(row, center , center , auto );
+    width: $width-100;        
+    padding: 20px;
+}
+.color__font{
+    //map-get
+    background: map-get($map: $bgColor, $key: 'div');    
+    padding: 20px;
+}
+.section__h3{     
+    width: $width-100;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-evenly;    
+}
+/* fotos classes */
+.fotos_section{
+    display: flex;  
+    flex-wrap: wrap;
+    justify-content: space-evenly; 
+    align-content: space-between;
+    padding: 10px;     
+}
+.fotos_div{
+    margin: 10px 15px;   
+}
+
+/* contacto classes*/
+.d_flex{
+    //mixing
+    @include d_flex(column, strech , space-around, auto); 
+    padding-bottom: 20px;
+    width: 70%;    
+}
+.bg-color_h2{
+    background: none;
+    text-align: $alignText;
+}
+.d_flex_form{
+    //mixing
+    @include d_flex(column, flex, center, auto);   
+}

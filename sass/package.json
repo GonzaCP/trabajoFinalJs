@@ -1,0 +1,22 @@
+{
+  "name": "package1",
+  "version": "1.0.0",
+  "description": "variation",
+  "main": "-",
+  "scripts": {
+    "test": "-", "sass": "sass",
+		"sass:watch": "sass --watch ../scss/main.scss  ../css/index.css"
+  },
+  "repository": {
+    "type": "git",
+    "url": "-"
+  },
+  "keywords": [
+    "-"
+  ],
+  "author": "glm",
+  "license": "ISC",
+  "dependencies": {
+    "sass": "^1.54.0"
+  }
+}
