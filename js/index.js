@@ -4,6 +4,8 @@ let total = 0
 let cantidad;
 
 
+// PRODUCTOS
+
 const bandas = [
     {nombre: "Queen", fecha: "15-12-1986", hora: "22.00", lugar: "Wembley Stadium", precio: 1500},
     {nombre: "Pink Floyd", fecha: "15-12-2022", hora: "21.00", lugar: "Casino Magic", precio: 500},    
@@ -13,34 +15,41 @@ const bandas = [
 // RELLENANDO CARRITO
 //bandas.forEach((producto) => (total += producto.precio))
 
-// FUNCION ELECCION CANTIAD DE ENTRADAS
+
+function confirmandoLaCompra (){
+    let confirmaCompra = document.querySelector(".confirmarCompra");
+    confirmaCompra.onclick = () => {
+    console.log("Estas aca");
+    }
+}
 
 
-
+// FUNCION ELECCION CANTIDAD DE ENTRADAS
 
 
 function eligiendoCantidadEntradasQueen () {       
     let agregarAlCarrito = document.getElementById("carritoQueen").value;
     switch (agregarAlCarrito) {
         case(agregarAlCarrito):
-        cantidad = bandas[0].precio * agregarAlCarrito;    
+        cantidad = bandas[0].precio * agregarAlCarrito;  
         
     }   
     let btn1 = document.getElementById("queen3");
-        btn1.onclick = () => {            
+        btn1.onclick = () => {                      
             llenarCarrito.push(cantidad); 
-            console.log(llenarCarrito);      
-            
-    }
-
-    
+            console.log(llenarCarrito);
+            let nuevoBoton = document.createElement("button");
+            nuevoBoton.innerHTML = "<a href='../pages/carrito.html'>Confirmar compra</a>" 
+            nuevoBoton.className = "confirmarCompra";
+            document.body.append(nuevoBoton);  
+            confirmandoLaCompra();       
+    }    
     btn1.addEventListener("click", validarFormulario);
 
     function validarFormulario(e) {
-        e.preventDefault(); 
-        
-    }  
-    
+        e.preventDefault();         
+    }     
+   
 
 }
 
@@ -56,13 +65,11 @@ function eligiendoCantidadEntradasPink () {
             console.log(llenarCarrito);      
             
     }
-
     
     btn1.addEventListener("click", validarFormulario);
 
     function validarFormulario(e) {
-        e.preventDefault(); 
-        
+        e.preventDefault();         
     }  
     
 }
@@ -93,6 +100,8 @@ function eligiendoCantidadEntradasRed () {
 
 
 // FUNCION DESPLIEGUE FORMULARIO AL TOCAR EL BOTON + info
+
+
 function formularioCompraEntradasQueen () {
     let comprar = document.getElementById("selectorQueen");
     comprar.innerHTML = `<h3>${bandas[0].nombre}</h3>
@@ -100,7 +109,7 @@ function formularioCompraEntradasQueen () {
     <p>${bandas[0].fecha}</p>
     <p>${bandas[0].hora} hs.</p>
     <p>$ ${bandas[0].precio} c/u.</p>
-    <button id="queen" type="submit" >+ info</button>
+    <button id="queen" type="submit">+ info</button>
     <form id="carritoQueen2">
     <select id="carritoQueen" name="producto" onchange="eligiendoCantidadEntradasQueen();">
     <option selected>Ingrese la cantidad de entradas que desea comprar</option>
@@ -151,7 +160,10 @@ function formularioCompraEntradasRhcp () {
     </form>`;    
 }
 
+
 // EVENTO CLICK EN + INFO
+
+
 let botonMasInfo = document.querySelectorAll("button");
 
 botonMasInfo[1].onclick = () => {  
@@ -168,18 +180,6 @@ botonMasInfo[3].onclick = () => {
 // EVENTO CLICK EN AGREGAR AL CARRITO
 
  
-
-
-
-
-
-
-
-
-// CLICK EN AGREGAR AL CARRITO
-
-
-
 
 
 
