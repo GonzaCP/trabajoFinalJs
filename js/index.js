@@ -16,7 +16,7 @@ const bandas = [
 //bandas.forEach((producto) => (total += producto.precio))
 
 
-function confirmandoLaCompra (){
+function confirmandoLaCompra () {
     let confirmaCompra = document.querySelector(".confirmarCompra");
     confirmaCompra.onclick = () => {
     console.log("Estas aca");
@@ -39,7 +39,8 @@ function eligiendoCantidadEntradasQueen () {
             llenarCarrito.push(cantidad); 
             console.log(llenarCarrito);
             let nuevoBoton = document.createElement("button");
-            nuevoBoton.innerHTML = "<a href='../pages/carrito.html'>Confirmar compra</a>" 
+            nuevoBoton.innerHTML = `<a href="pages/carrito.html">
+            <img src="img/carritoCompras2.png" alt="Carrito de compras" href="pages/carrito.html"> `;
             nuevoBoton.className = "confirmarCompra";
             document.body.append(nuevoBoton);  
             confirmandoLaCompra();       
