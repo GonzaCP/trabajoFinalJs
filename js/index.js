@@ -2,15 +2,12 @@ const vaciarCarrito = [];
 let llenarCarrito = [];
 let total = 0
 let cantidad;
-
-
-// PRODUCTOS
-
 const bandas = [
     {nombre: "Queen", fecha: "15-12-1986", hora: "22.00", lugar: "Wembley Stadium", precio: 1500},
     {nombre: "Pink Floyd", fecha: "15-12-2022", hora: "21.00", lugar: "Casino Magic", precio: 500},    
     {nombre: "Red Hot Chili Peppers", fecha: "30-10-2022", hora: "22", lugar: "Slane Castle", precio: 1000}
 ]; 
+
 
 // RELLENANDO CARRITO
 //bandas.forEach((producto) => (total += producto.precio))
@@ -18,11 +15,18 @@ const bandas = [
 
 function confirmandoLaCompra () {
     let confirmaCompra = document.querySelector(".confirmarCompra");
-    confirmaCompra.onclick = () => {
-    console.log("Estas aca");
-    }
-}
+    confirmaCompra.onclick = () => {    
+        console.log(llenarCarrito);
+        let nuevoBoton2 = document.getElementById("finalizacionCompra");
+        nuevoBoton2.innerHTML = `<p>Este el total de tu compra: ${llenarCarrito} pesos</p>`;
+              
+    } 
+    confirmaCompra.addEventListener("click", validarFormulario);
 
+    function validarFormulario(e) {
+        e.preventDefault();         
+    }   
+}
 
 // FUNCION ELECCION CANTIDAD DE ENTRADAS
 
@@ -31,27 +35,29 @@ function eligiendoCantidadEntradasQueen () {
     let agregarAlCarrito = document.getElementById("carritoQueen").value;
     switch (agregarAlCarrito) {
         case(agregarAlCarrito):
-        cantidad = bandas[0].precio * agregarAlCarrito;  
-        
+        cantidad = bandas[0].precio * agregarAlCarrito;         
     }   
-    let btn1 = document.getElementById("queen3");
-        btn1.onclick = () => {                      
-            llenarCarrito.push(cantidad); 
-            console.log(llenarCarrito);
-            let nuevoBoton = document.createElement("button");
-            nuevoBoton.innerHTML = `<a href="pages/carrito.html">
-            <img src="img/carritoCompras2.png" alt="Carrito de compras" href="pages/carrito.html"> `;
-            nuevoBoton.className = "confirmarCompra";
-            document.body.append(nuevoBoton);  
-            confirmandoLaCompra();       
+    let btn1 = document.getElementById("queen3");    
+    btn1.onclick = () => {                      
+        llenarCarrito.push(cantidad);  
+        Swal.fire({
+            position: 'center',
+            icon: 'success',
+            title: 'Entradas agregadas al carrito',
+            showConfirmButton: false,
+            timer: 2000
+        })    
+
+        let nuevoBoton = document.getElementById("carritoQueen2");
+        nuevoBoton.innerHTML = `<button class="confirmarCompra">CONFIRMAR COMPRA/VER CARRITO</button>        
+        <button>CANCELAR COMPRA</button>`;
+        confirmandoLaCompra();       
     }    
     btn1.addEventListener("click", validarFormulario);
 
     function validarFormulario(e) {
         e.preventDefault();         
-    }     
-   
-
+    }   
 }
 
 function eligiendoCantidadEntradasPink () {       
@@ -61,18 +67,26 @@ function eligiendoCantidadEntradasPink () {
         cantidad = bandas[1].precio * agregarAlCarrito;                                 
     }
     let btn1 = document.getElementById("pink3");
-        btn1.onclick = () => {            
-            llenarCarrito.push(cantidad); 
-            console.log(llenarCarrito);      
-            
+    btn1.onclick = () => {            
+        llenarCarrito.push(cantidad); 
+        Swal.fire({
+            position: 'center',
+            icon: 'success',
+            title: 'Entradas agregadas al carrito',
+            showConfirmButton: false,
+            timer: 2000
+        })                
+        let nuevoBoton = document.getElementById("carritoPink2");
+        nuevoBoton.innerHTML = `<button class="confirmarCompra">CONFIRMAR COMPRA/VER CARRITO</button>        
+        <button>CANCELAR COMPRA</button>`;   
+        confirmandoLaCompra();    
     }
     
     btn1.addEventListener("click", validarFormulario);
 
     function validarFormulario(e) {
         e.preventDefault();         
-    }  
-    
+    }      
 }
 
 function eligiendoCantidadEntradasRed () {       
@@ -82,21 +96,25 @@ function eligiendoCantidadEntradasRed () {
         cantidad = bandas[2].precio * agregarAlCarrito;   
     }
     let btn1 = document.getElementById("rhcp3");
-        btn1.onclick = () => {            
-            llenarCarrito.push(cantidad); 
-            console.log(llenarCarrito);      
-            
-    }
-
-    
+    btn1.onclick = () => {            
+        llenarCarrito.push(cantidad); 
+        Swal.fire({
+            position: 'center',
+            icon: 'success',
+            title: 'Entradas agregadas al carrito',
+            showConfirmButton: false,
+            timer: 2000
+        })                
+        let nuevoBoton = document.getElementById("carritoRed2");
+        nuevoBoton.innerHTML = `<button class="confirmarCompra">CONFIRMAR COMPRA/VER CARRITO</button>        
+        <button>CANCELAR COMPRA</button>`;
+        confirmandoLaCompra();  
+    }    
     btn1.addEventListener("click", validarFormulario);
 
     function validarFormulario(e) {
-        e.preventDefault(); 
-        
-    }  
-    
-   
+        e.preventDefault();         
+    }     
 }
 
 
@@ -130,7 +148,7 @@ function formularioCompraEntradasPink () {
     <p>${bandas[1].hora} hs.</p>
     <p>$ ${bandas[1].precio} c/u.</p>
     <button id="pink" type="submit" >+ info</button>
-    <form>
+    <form id="carritoPink2">
     <select id="carritoPink" name="producto" onchange="eligiendoCantidadEntradasPink();">
     <option selected>Ingrese la cantidad de entradas que desea comprar</option>
     <option value="1">1</option>
@@ -149,7 +167,7 @@ function formularioCompraEntradasRhcp () {
     <p>${bandas[2].hora} hs.</p>
     <p>$ ${bandas[2].precio} c/u.</p>
     <button id="rhcp"type="submit" >+ info</button>
-    <form>
+    <form id="carritoRed2">
     <select id="carritoRed" name="producto" onchange="eligiendoCantidadEntradasRed();">
     <option selected>Ingrese la cantidad de entradas que desea comprar</option>
     <option value="1">1</option>
@@ -181,6 +199,7 @@ botonMasInfo[3].onclick = () => {
 // EVENTO CLICK EN AGREGAR AL CARRITO
 
  
+
 
 
 
