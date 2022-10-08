@@ -17,17 +17,10 @@ const banda3 = new Bandas (3, "Red Hot Chili Peppers", "21/12/2022", "22.30 hs."
 
 const vaciarCarrito = [];
 let llenarCarrito = [];
-/* 
-const gruposDeMusica = [
-    {id: 1, nombre: "Queen", fecha: "15-12-1986", hora: "22.00", lugar: "Wembley Stadium", precio: 150},
-    {id: 2, nombre: "Pink Floyd", fecha: "15-12-2022", hora: "21.00", lugar: "Casino Magic", precio: 250},    
-    {id: 3, nombre: "Red Hot Chili Peppers", fecha: "30-10-2022", hora: "22", lugar: "Slane Castle", precio: 120}
-]; 
- */
 
-for (let i = 0; i <= llenarCarrito.length - 1; i++) {
+/* for (let i = 0; i <= llenarCarrito.length - 1; i++) {
     
-}
+} */
 
 // VARIABLES
 
@@ -39,21 +32,20 @@ let selectedOption2;
 
 //                              CÓDIGO                          //
 
-
-
-// CAMBIO DE PRECIO DE ENTRADA SEGÚN LA BANDA QUE SE ELIJE
-
 // BOTÓN SELECCION DE BANDA
 
 let selectBanda = document.getElementById('seleccionBanda');
 
- // BOTÓN PRECIO X ENTRADA
+// BOTÓN PRECIO X ENTRADA
 
- let precioEntrada = document.getElementById("precioEntrada");
+let precioEntrada = document.getElementById("precioEntrada");
+
+// CAMBIO DE PRECIO DE ENTRADA SEGÚN LA BANDA QUE SE ELIJE
 
 selectBanda.addEventListener('change',
-  function(){
+  function() {
     selectedOption = this.options[selectBanda.selectedIndex];
+    subTotal.placeholder = "$ -"
     if (selectedOption.value == 1) {
         selectedOption = banda1;       
     } else if (selectedOption.value == 2) {
@@ -62,10 +54,8 @@ selectBanda.addEventListener('change',
         selectedOption = banda3;       
     }   
     precioEntrada.placeholder = (selectedOption.precio);  
-  });  
+  });   
 
-  
-// CAMBIO DE SUBTOTAL SEGÚN CANTIDAD DE ENTRADAS
 
 // BOTÓN CANTIDAD DE ENTRADAS
 let selectCantidad = document.getElementById("cantidadDeEntradas");
@@ -74,6 +64,7 @@ let selectCantidad = document.getElementById("cantidadDeEntradas");
 
 let subTotal = document.getElementById("subtotal");
 
+// CAMBIO DE SUBTOTAL SEGÚN CANTIDAD DE ENTRADAS
 selectCantidad.addEventListener('change',
   function(){
     selectedOption2 = this.options[selectCantidad.selectedIndex];
@@ -88,17 +79,70 @@ selectCantidad.addEventListener('change',
     }    
 });
 
-// BOTÓN AGREGAR AL CARRITO PREVIENE RECARGA DE PÁGINA Y DESPLIEGA UNA TABLA CON LO ADQUIRIDO
+//llenarCarrito.push(total);
+
+// AGREGO MAS COSAS AL CARRITO Y SE CREA NUEVA FILA
+
+function segundaCompra () {
+
+    let botonDeConfirmar = document.getElementById("confirmandoCompra");
+    console.log(botonDeConfirmar.textContent);
+    
+    agregarAlCarrito.onclick = function(e) {
+        e.preventDefault();
+        llenarCarrito.unshift(subTotal.placeholder);        
+        let agregandoCosas = document.querySelector(".table-group-divider");
+        let agregoFormulario = document.createElement("tr");
+        agregoFormulario.innerHTML = `<tr>
+        <th scope="row">${selectedOption2.value}</th>
+        <td>${selectedOption.nombre}</td>
+        <td>$ ${subTotal.placeholder}</td>
+        <td>ELIMINAR</td>
+        </tr>`;
+        agregandoCosas.appendChild(agregoFormulario);
+        
+        
+    }
+}
+
+// BOTÓN AGREGAR AL CARRITO PREVIENE RECARGA DE PÁGINA, PUSHEA LO COMPRADO AL CARRITO, DESPLIEGA UNA TABLA CON LO ADQUIRIDO
 
 let agregarAlCarrito = document.querySelector(".btn");
 
 agregarAlCarrito.onclick = function(e) {
     e.preventDefault();
-    let agregado = document.createElement("h5");
-    agregado.innerHTML = `<p>El total a pagar es: $ ${subTotal.placeholder}</p>`;
-    document.body.appendChild(agregado);
+    llenarCarrito.push(subTotal.placeholder);    
+    let formularioFinal = document.getElementById("formularioEntradas");
+    let agregoFormulario = document.createElement("div");
+    agregoFormulario.innerHTML = `<table class="table">
+    <thead>
+      <tr>
+        <th scope="col">Cantidad de entradas</th>
+        <th scope="col">Banda</th>
+        <th scope="col">Subtotal</th>
+        <th scope="col">#</th>
+      </tr>
+    </thead>
+    <tbody class="table-group-divider">
+      <tr>
+        <th scope="row">${selectedOption2.value}</th>
+        <td>${selectedOption.nombre}</td>
+        <td>$ ${subTotal.placeholder}</td>
+        <td>ELIMINAR</td>
+      </tr>      
+    </tbody>
+  </table>`;
+    formularioFinal.appendChild(agregoFormulario);
+    let botonNuevo = document.querySelector(".col-md-3");
+    let botonConfirmar = document.createElement("button");
+    botonConfirmar.innerHTML = `<button class="btn btn-primary" id="confirmandoCompra" type="submit">Confirmar Compra</button>`;  
+    botonNuevo.appendChild(botonConfirmar);
     
+    segundaCompra(); 
 }
+
+
+
 
 
 
