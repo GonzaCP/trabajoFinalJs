@@ -43,24 +43,72 @@
             </div>
             <div id="selectorQueen" class="seleccion">
                 <h3>Queen</h3>
-                <p>Wembley Stadium - 15-12-1986 / 22 hs.</p>
-                <button id="queen" type="submit" >+ info</button>               
+                <p>Wembley Stadium</p>
+                <p>15/12/1986</p>                               
+                <p>22 hs.</p>
+                <p>$150 c/u</p>
             </div>
             <div id="selectorPink" class="seleccion">
                 <h3>Pink Floyd</h3>
-                <p>Carino Magic - 15-12-2022 / 21 hs. </p>
-                <button id="pink" type="submit" >+ info</button>
+                <p>Carino Magic
+                <p>15/12/2022</p> 
+                <p>21 hs.</p>
+                <p>$250 c/u</p>
             </div>
             <div id="selectorRed" class="seleccion">
                 <h3>Red Hot Chili Peppers</h3>                
-                <p>Slane Castle - 30-10-2022 / 22 hs.</p> 
-                <button id="rhcp" type="submit" >+ info</button> 
-            </div>                      
+                <p>Slane Castle</p>
+                <p>21/12/2022</p>
+                <p>22.30 hs.</p>
+                <p>$120 c/u</p>
+            </div>                             
         </div>
-    </section>
-    <div id="finalizacionCompra">
+    </section> 
+    <section> 
+        <div>
+            <label>Elija la banda</label> 
+            <select name="seleccionBanda" id="seleccionBanda"> 
+                <option value="" disabled selected>...</option>
+                    <option value="1">QUEEN</option>
+                    <option value="2">PINK FLOYD</option>
+                    <option value="3">RED HOT CHILI PEPPERS</option>                  
+            </select>
+        </div>      
+        <div>
+            <label>Elija la cantidad de entradas</label> 
+            <select name="cantidadDeEntradas" id="cantidadDeEntradas"> 
+                <option value="" disabled selected>...</option>
+                <option value="1">1</option>
+                <option value="2">2</option>
+                <option value="3">3</option>                  
+                <option value="4">4</option>                  
+            </select>
+        </div>          
+        <div>
+            <fieldset disabled="disabled">
+                 <div> 
+                    <label>Precio x entrada</label>
+                    <input id="precioEntrada" placeholder="$ -"/>
+                </div>
+                <div>
+                    <label>Subtotal</label>
+                    <input id="subtotal"placeholder="$ -"/>
+                </div>
+                </fieldset>
+                </div>               
+            </div>                  
+            <div class="col-md-3">
+            <button class="btn btn-primary" type="submit">Agregar al carrito</button>        
+            </div>
+        </form>
+    </section> 
+    <section id="formularioEntradas">
 
-    </div> 
+    </section> 
+    <div>
+        
+        
+    </div>
     <div class="main__div main__div2 main__div3">
         <p class="wP" id="wP">Esta página es posible gracias a los siguientes complejos</p>       
         <img src="img/cine_espanol.jfif" alt="logo de Cine Español" class="sizeImg">

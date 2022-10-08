@@ -1,233 +1,134 @@
+// OBJETOS A PARTIR DE UNA FUNCION
+
+function Bandas (id, nombre, fecha, hora, lugar, precio) {
+    this.id = id;
+    this.nombre = nombre;
+    this.fecha = fecha;
+    this.hora = hora;
+    this.lugar = lugar;
+    this.precio = precio;
+}
+
+const banda1 = new Bandas (1, "Queen", "15/12/1986", "22 hs.", "Wembley Staidum", 150);
+const banda2 = new Bandas (2, "Pink Floyd", "15/12/2022", "21 hs.", "Casino Magic", 250);
+const banda3 = new Bandas (3, "Red Hot Chili Peppers", "21/12/2022", "22.30 hs.", "Slane Castle", 120);
+
+// ARRAYS
+
 const vaciarCarrito = [];
 let llenarCarrito = [];
+/* 
+const gruposDeMusica = [
+    {id: 1, nombre: "Queen", fecha: "15-12-1986", hora: "22.00", lugar: "Wembley Stadium", precio: 150},
+    {id: 2, nombre: "Pink Floyd", fecha: "15-12-2022", hora: "21.00", lugar: "Casino Magic", precio: 250},    
+    {id: 3, nombre: "Red Hot Chili Peppers", fecha: "30-10-2022", hora: "22", lugar: "Slane Castle", precio: 120}
+]; 
+ */
+
+for (let i = 0; i <= llenarCarrito.length - 1; i++) {
+    
+}
+
+// VARIABLES
+
 let total = 0
 let cantidad;
-const bandas = [
-    {nombre: "Queen", fecha: "15-12-1986", hora: "22.00", lugar: "Wembley Stadium", precio: 1500},
-    {nombre: "Pink Floyd", fecha: "15-12-2022", hora: "21.00", lugar: "Casino Magic", precio: 500},    
-    {nombre: "Red Hot Chili Peppers", fecha: "30-10-2022", hora: "22", lugar: "Slane Castle", precio: 1000}
-]; 
+let selectedOption;
+let selectedOption2;
 
 
-// RELLENANDO CARRITO
-//bandas.forEach((producto) => (total += producto.precio))
+//                              CÓDIGO                          //
 
 
-function confirmandoLaCompra () {
-    let confirmaCompra = document.querySelector(".confirmarCompra");
-    confirmaCompra.onclick = () => {    
-        console.log(llenarCarrito);
-        let nuevoBoton2 = document.getElementById("finalizacionCompra");
-        nuevoBoton2.innerHTML = `<p>Este el total de tu compra: ${llenarCarrito} pesos</p>`;
-              
-    } 
-    confirmaCompra.addEventListener("click", validarFormulario);
 
-    function validarFormulario(e) {
-        e.preventDefault();         
+// CAMBIO DE PRECIO DE ENTRADA SEGÚN LA BANDA QUE SE ELIJE
+
+// BOTÓN SELECCION DE BANDA
+
+let selectBanda = document.getElementById('seleccionBanda');
+
+ // BOTÓN PRECIO X ENTRADA
+
+ let precioEntrada = document.getElementById("precioEntrada");
+
+selectBanda.addEventListener('change',
+  function(){
+    selectedOption = this.options[selectBanda.selectedIndex];
+    if (selectedOption.value == 1) {
+        selectedOption = banda1;       
+    } else if (selectedOption.value == 2) {
+        selectedOption = banda2;        
+    } else if (selectedOption.value == 3) {
+        selectedOption = banda3;       
     }   
-}
+    precioEntrada.placeholder = (selectedOption.precio);  
+  });  
 
-// FUNCION ELECCION CANTIDAD DE ENTRADAS
+  
+// CAMBIO DE SUBTOTAL SEGÚN CANTIDAD DE ENTRADAS
 
+// BOTÓN CANTIDAD DE ENTRADAS
+let selectCantidad = document.getElementById("cantidadDeEntradas");
 
-function eligiendoCantidadEntradasQueen () {       
-    let agregarAlCarrito = document.getElementById("carritoQueen").value;
-    switch (agregarAlCarrito) {
-        case(agregarAlCarrito):
-        cantidad = bandas[0].precio * agregarAlCarrito;         
-    }   
-    let btn1 = document.getElementById("queen3");    
-    btn1.onclick = () => {                      
-        llenarCarrito.push(cantidad);  
-        Swal.fire({
-            position: 'center',
-            icon: 'success',
-            title: 'Entradas agregadas al carrito',
-            showConfirmButton: false,
-            timer: 2000
-        })    
+// BOTÓN SUBTOTAL
 
-        let nuevoBoton = document.getElementById("carritoQueen2");
-        nuevoBoton.innerHTML = `<button class="confirmarCompra">CONFIRMAR COMPRA/VER CARRITO</button>        
-        <button>CANCELAR COMPRA</button>`;
-        confirmandoLaCompra();       
+let subTotal = document.getElementById("subtotal");
+
+selectCantidad.addEventListener('change',
+  function(){
+    selectedOption2 = this.options[selectCantidad.selectedIndex];
+    if (selectedOption2.value == 1) { 
+        subTotal.placeholder = (selectedOption.precio * 1);    
+    } else if (selectedOption2.value == 2) { 
+        subTotal.placeholder = (selectedOption.precio * 2);       
+    } else if (selectedOption2.value == 3) {   
+        subTotal.placeholder = (selectedOption.precio * 3);       
+    } else if (selectedOption2.value == 4) {  
+        subTotal.placeholder = (selectedOption.precio * 4);        
     }    
-    btn1.addEventListener("click", validarFormulario);
+});
 
-    function validarFormulario(e) {
-        e.preventDefault();         
-    }   
-}
+// BOTÓN AGREGAR AL CARRITO PREVIENE RECARGA DE PÁGINA Y DESPLIEGA UNA TABLA CON LO ADQUIRIDO
 
-function eligiendoCantidadEntradasPink () {       
-    let agregarAlCarrito = document.getElementById("carritoPink").value;
-    switch (agregarAlCarrito) {
-        case(agregarAlCarrito):
-        cantidad = bandas[1].precio * agregarAlCarrito;                                 
-    }
-    let btn1 = document.getElementById("pink3");
-    btn1.onclick = () => {            
-        llenarCarrito.push(cantidad); 
-        Swal.fire({
-            position: 'center',
-            icon: 'success',
-            title: 'Entradas agregadas al carrito',
-            showConfirmButton: false,
-            timer: 2000
-        })                
-        let nuevoBoton = document.getElementById("carritoPink2");
-        nuevoBoton.innerHTML = `<button class="confirmarCompra">CONFIRMAR COMPRA/VER CARRITO</button>        
-        <button>CANCELAR COMPRA</button>`;   
-        confirmandoLaCompra();    
-    }
+let agregarAlCarrito = document.querySelector(".btn");
+
+agregarAlCarrito.onclick = function(e) {
+    e.preventDefault();
+    let agregado = document.createElement("h5");
+    agregado.innerHTML = `<p>El total a pagar es: $ ${subTotal.placeholder}</p>`;
+    document.body.appendChild(agregado);
     
-    btn1.addEventListener("click", validarFormulario);
-
-    function validarFormulario(e) {
-        e.preventDefault();         
-    }      
-}
-
-function eligiendoCantidadEntradasRed () {       
-    let agregarAlCarrito = document.getElementById("carritoRed").value;
-    switch (agregarAlCarrito) {
-        case(agregarAlCarrito):
-        cantidad = bandas[2].precio * agregarAlCarrito;   
-    }
-    let btn1 = document.getElementById("rhcp3");
-    btn1.onclick = () => {            
-        llenarCarrito.push(cantidad); 
-        Swal.fire({
-            position: 'center',
-            icon: 'success',
-            title: 'Entradas agregadas al carrito',
-            showConfirmButton: false,
-            timer: 2000
-        })                
-        let nuevoBoton = document.getElementById("carritoRed2");
-        nuevoBoton.innerHTML = `<button class="confirmarCompra">CONFIRMAR COMPRA/VER CARRITO</button>        
-        <button>CANCELAR COMPRA</button>`;
-        confirmandoLaCompra();  
-    }    
-    btn1.addEventListener("click", validarFormulario);
-
-    function validarFormulario(e) {
-        e.preventDefault();         
-    }     
 }
 
 
-// FUNCION DESPLIEGUE FORMULARIO AL TOCAR EL BOTON + info
 
 
-function formularioCompraEntradasQueen () {
-    let comprar = document.getElementById("selectorQueen");
-    comprar.innerHTML = `<h3>${bandas[0].nombre}</h3>
-    <p>${bandas[0].lugar}</p>
-    <p>${bandas[0].fecha}</p>
-    <p>${bandas[0].hora} hs.</p>
-    <p>$ ${bandas[0].precio} c/u.</p>
-    <button id="queen" type="submit">+ info</button>
-    <form id="carritoQueen2">
-    <select id="carritoQueen" name="producto" onchange="eligiendoCantidadEntradasQueen();">
-    <option selected>Ingrese la cantidad de entradas que desea comprar</option>
-    <option value="1">1</option>
-    <option value="2">2</option>
-    <option value="3">3</option>
-    <option value="4">4</option>
-    </select>
-    <button id="queen3" type="submit">Agregar al carrito</button>   
-    </form>`;    
-}
-function formularioCompraEntradasPink () {
-    let comprar = document.getElementById("selectorPink");
-    comprar.innerHTML = `<h3>${bandas[1].nombre}</h3>
-    <p>${bandas[1].lugar}</p>
-    <p>${bandas[1].fecha}</p>
-    <p>${bandas[1].hora} hs.</p>
-    <p>$ ${bandas[1].precio} c/u.</p>
-    <button id="pink" type="submit" >+ info</button>
-    <form id="carritoPink2">
-    <select id="carritoPink" name="producto" onchange="eligiendoCantidadEntradasPink();">
-    <option selected>Ingrese la cantidad de entradas que desea comprar</option>
-    <option value="1">1</option>
-    <option value="2">2</option>
-    <option value="3">3</option>
-    <option value="4">4</option>
-    </select>
-    <button id="pink3" type="submit">Agregar al carrito</button>   
-    </form>`;    
-}
-function formularioCompraEntradasRhcp () {
-    let comprar = document.getElementById("selectorRed");
-    comprar.innerHTML = `<h3>${bandas[2].nombre}</h3>
-    <p>${bandas[2].lugar}</p>
-    <p>${bandas[2].fecha}</p>
-    <p>${bandas[2].hora} hs.</p>
-    <p>$ ${bandas[2].precio} c/u.</p>
-    <button id="rhcp"type="submit" >+ info</button>
-    <form id="carritoRed2">
-    <select id="carritoRed" name="producto" onchange="eligiendoCantidadEntradasRed();">
-    <option selected>Ingrese la cantidad de entradas que desea comprar</option>
-    <option value="1">1</option>
-    <option value="2">2</option>
-    <option value="3">3</option>
-    <option value="4">4</option>
-    </select>
-    <button id="rhcp3" type="submit">Agregar al carrito</button>   
-    </form>`;    
-}
-
-
-// EVENTO CLICK EN + INFO
-
-
-let botonMasInfo = document.querySelectorAll("button");
-
-botonMasInfo[1].onclick = () => {  
-    formularioCompraEntradasQueen ();      
-}
-botonMasInfo[2].onclick = () => {
-    formularioCompraEntradasPink ();
-}
-botonMasInfo[3].onclick = () => {
-    formularioCompraEntradasRhcp ();    
-}
-
-
-// EVENTO CLICK EN AGREGAR AL CARRITO
-
- 
-
-
-
-
-
-
-
-   
-//agrega valor al final del array
-//bandas.push(true);
-// agrega valor al principio del array
-//bandas.unshift(25);
-
-
-
-/* OPERADOR TERNARIO */
-
+// RECUPERO DATOS DE UN INPUT (NOMBRE, APELLIDO, ETC.)
 /* 
-let precio = 50;
-if (precio < 40) {
-    console.log("El producto es accesible");
-} else {
-    console.log("El producto es costoso");
-}
+const eventKey = document.getElementById("formName");
+eventKey.addEventListener("input", (e) => {
+    console.log(e.target.value);
+})
+ */
+/* 
+const eventKey = document.getElementById("formName");
+eventKey.addEventListener("input", (e) => {
+    if (e.target.value === "") {
+        console.log("Falló la validación");
+    }
+})
+ */
 
-let precio = 50
-precio < 40?console.log("El producto es accesible"): console.log("EL producto es costoso");
-*/
+// OBTENER DATOS DE UN FORMULARIO
+/* 
+const formulario = document.querySelector("form");
 
+const nombre1 = document.getElementById("formName");
 
+const mail = document.getElementById("formMail");
 
-
+formulario.addEventListener("submit", validarFormulario);
+function validarFormulario (e) {
+    e.preventDefault()
+    console.log(`${nombre1.value} ${mail.value}`);
+} */
