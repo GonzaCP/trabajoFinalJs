@@ -86,10 +86,43 @@ selectCantidad.addEventListener('change',
 function segundaCompra () {
 
     let botonDeConfirmar = document.getElementById("confirmandoCompra");
-    console.log(botonDeConfirmar.textContent);
-    
-    agregarAlCarrito.onclick = function(e) {
+    botonDeConfirmar.onclick = function() {                        
+        // ACA VA UN SWEET ALERT 2
+        
+    }
+
+    let botonEliminarCarrito = document.getElementById("eliminandoCompra");
+    botonEliminarCarrito.onclick = function() {
+        // ACA VA UN SWEET ALERT 2
+        Swal.fire({
+            title: '¿Estás seguro de eliminar todo el carrito?',
+            text: "Quedará vacio",
+            icon: 'warning',
+            showCancelButton: true,
+            confirmButtonColor: '#3085d6',
+            cancelButtonColor: '#d33',
+            confirmButtonText: 'Si, eliminar!'
+          }).then((result) => {
+            if (result.isConfirmed) {
+              Swal.fire(
+                'Carrito vacio',
+                'No hay productos en el carrito',
+                'success'
+              )
+            }
+          })
+    }
+  
+
+    agregarAlCarrito.onclick = function(e) {        
         e.preventDefault();
+        Swal.fire({
+            position: 'top-end',
+            icon: 'success',
+            title: 'Agregaste al carrito',
+            showConfirmButton: false,
+            timer: 1500
+          })
         llenarCarrito.unshift(subTotal.placeholder);        
         let agregandoCosas = document.querySelector(".table-group-divider");
         let agregoFormulario = document.createElement("tr");
@@ -97,10 +130,9 @@ function segundaCompra () {
         <th scope="row">${selectedOption2.value}</th>
         <td>${selectedOption.nombre}</td>
         <td>$ ${subTotal.placeholder}</td>
-        <td>ELIMINAR</td>
+        <td>$ ${llenarCarrito}</td>
         </tr>`;
-        agregandoCosas.appendChild(agregoFormulario);
-        
+        agregandoCosas.appendChild(agregoFormulario);       
         
     }
 }
@@ -111,6 +143,13 @@ let agregarAlCarrito = document.querySelector(".btn");
 
 agregarAlCarrito.onclick = function(e) {
     e.preventDefault();
+    Swal.fire({
+        position: 'top-end',
+        icon: 'success',
+        title: 'Agregaste al carrito',
+        showConfirmButton: false,
+        timer: 1500
+      })
     llenarCarrito.push(subTotal.placeholder);    
     let formularioFinal = document.getElementById("formularioEntradas");
     let agregoFormulario = document.createElement("div");
@@ -120,7 +159,7 @@ agregarAlCarrito.onclick = function(e) {
         <th scope="col">Cantidad de entradas</th>
         <th scope="col">Banda</th>
         <th scope="col">Subtotal</th>
-        <th scope="col">#</th>
+        <th scope="col">Total</th>
       </tr>
     </thead>
     <tbody class="table-group-divider">
@@ -128,7 +167,7 @@ agregarAlCarrito.onclick = function(e) {
         <th scope="row">${selectedOption2.value}</th>
         <td>${selectedOption.nombre}</td>
         <td>$ ${subTotal.placeholder}</td>
-        <td>ELIMINAR</td>
+        <td>$ ${llenarCarrito}</td>
       </tr>      
     </tbody>
   </table>`;
@@ -137,6 +176,10 @@ agregarAlCarrito.onclick = function(e) {
     let botonConfirmar = document.createElement("button");
     botonConfirmar.innerHTML = `<button class="btn btn-primary" id="confirmandoCompra" type="submit">Confirmar Compra</button>`;  
     botonNuevo.appendChild(botonConfirmar);
+    let botonNuevo2 = document.querySelector(".col-md-3");
+    let botonEliminar = document.createElement("button");
+    botonEliminar.innerHTML = `<button class="btn btn-primary" id="eliminandoCompra" type="submit">Eliminar carrito</button>`;  
+    botonNuevo2.appendChild(botonEliminar);
     
     segundaCompra(); 
 }
