@@ -66,43 +66,44 @@
     </section> 
     <section> 
         <div>
-            <label>Elija la banda</label> 
-            <select name="seleccionBanda" id="seleccionBanda"> 
-                <option value="" disabled selected>...</option>
-                    <option value="1">QUEEN</option>
-                    <option value="2">PINK FLOYD</option>
-                    <option value="3">RED HOT CHILI PEPPERS</option>                  
-            </select>
-        </div>      
-        <div>
-            <label>Elija la cantidad de entradas</label> 
-            <select name="cantidadDeEntradas" id="cantidadDeEntradas"> 
-                <option value="" disabled selected>...</option>
-                <option value="1">1</option>
-                <option value="2">2</option>
-                <option value="3">3</option>                  
-                <option value="4">4</option>                  
-            </select>
-        </div>          
-        <div>
-            <form>
-                <fieldset disabled="disabled">
-                    <div> 
-                        <label>Precio x entrada</label>
-                        <input id="precioEntrada" placeholder="$ -"/>
-                    </div>
-                    <div>
-                        <label>Subtotal</label>
-                        <input id="subtotal"placeholder="$ -"/>
-                    </div>
-                    </fieldset>
-                    </div>               
-                </div>                  
-                <div class="col-md-3">
-                <button class="btn btn-primary" type="submit">Agregar al carrito</button>        
+            <form id="formularioEleccion">
+                <label>Elija la banda</label> 
+                <select name="seleccionBanda" id="seleccionBanda"> 
+                    <option value="" disabled selected>...</option>
+                        <option value="1">QUEEN</option>
+                        <option value="2">PINK FLOYD</option>
+                        <option value="3">RED HOT CHILI PEPPERS</option>                  
+                </select>
+                </div>      
+                <div>
+                    <label>Elija la cantidad de entradas</label> 
+                    <select name="cantidadDeEntradas" id="cantidadDeEntradas"> 
+                        <option value="" disabled selected>...</option>
+                        <option value="1">1</option>
+                        <option value="2">2</option>
+                        <option value="3">3</option>                  
+                        <option value="4">4</option>                  
+                    </select>
+                    <fieldset disabled="disabled">
+                        <div> 
+                            <label>Precio x entrada</label>
+                            <input id="precioEntrada" placeholder="$ -"/>
+                        </div>
+                        <div>
+                            <label>Subtotal</label>
+                            <input id="subtotal"placeholder="$ -"/>
+                        </div>
+                        </fieldset>
+                        </div>               
+                    </div>                  
+                    <div class="col-md-3">
+                    <button class="btn btn-primary" type="submit">Agregar al carrito</button>        
                 </div>
             </form>
-            <div id="formularioEntradas">
+                <div id="formularioEntradas">
+                </div>
+                <div id="formularioFinal">
+
             </div>
     </section>     
     <div>     
