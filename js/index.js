@@ -17,6 +17,7 @@ const banda3 = new Bandas (3, "Red Hot Chili Peppers", "21/12/2022", "22.30 hs."
 let llenarCarrito = [];
 
 // VARIABLES
+let total = 0;
 let cantidad;
 let selectedOption;
 let selectedOption2;
@@ -72,6 +73,7 @@ function renderizandoInputs () {
   let limpiarInputs = document.getElementById("formularioEleccion").reset(); 
   subTotal.placeholder = "$ -"; 
   precioEntrada.placeholder = "$ -";
+
 }
 
 // FUNCIÓN AGREGAR AL CARRITO SWEET ALERT 2
@@ -92,11 +94,12 @@ function SWEETcarritoVacioError () {
     title: 'Oops...',
     text: 'Parece que ando anduvo mal!',    
   })
-
 }
 
+
 // FUNCIÓN CONFIRMANDO COMPRA SWEET ALERT 2
-function confirmandoCompra () {
+function confirmandoCompra () {  
+
   Swal.fire({
     title: '¿Desea confirmar la compra?',   
     icon: 'warning',
@@ -106,25 +109,17 @@ function confirmandoCompra () {
     confirmButtonText: 'Si, confirmar compra!'
   }).then((result) => {
     if (result.isConfirmed) {
-      location.reload();
-      Swal.fire(
-        'Deleted!',
-        'Your file has been deleted.',
-        'success'
-      )
+      location.reload();      
     }
-  })
-  
-  
+  })    
 }
-
-
 
 // FUNCIÓN ELIMINANDO CARRITO SWEET ALERT 2
 function SWEETeliminandoCarrito () {
 
   llenarCarrito.splice(0, llenarCarrito.length);
   total = 0;
+
 
   // ELIMINAR CARRITO DEL LOCAL STORAGE
 
@@ -137,14 +132,16 @@ function SWEETeliminandoCarrito () {
     confirmButtonText: 'Si, eliminar!'
   }).then((result) => {
     if (result.isConfirmed) {
+      //let eliminandoTabla = document.querySelector(".btnEliminarCarrito");    
+      //eliminandoTabla.remove();     
       location.reload();      
     }    
-  })  
-  
+  })    
 }
 
 // FUNCIÓN SALIDA FINAL
 function salidaFinal () {  
+ 
   let formularioSalida = document.getElementById("formularioFinal");
   let agregoFormularioFinal = document.createElement("div");
   agregoFormularioFinal.innerHTML = `<h2>Ingrese los datos de su tarjeta</h2>
@@ -172,21 +169,18 @@ function salidaFinal () {
   <div class="col-md-3">
     <label for="validationDefault01" class="form-label">N° de contacto</label>
     <input type="number" class="form-control" id="validationDefault01" value="" placeholder="Número de área + Número telefónico" required>
-  </div>  
+  </div>      
   <div class="col-12">
     <button class="btn btn-primary" id="compraConfirmada" type="submit">Confirmar compra</button>
-  </div>
-</form>`;
-  formularioSalida.appendChild(agregoFormularioFinal);  
-
+  </div>  
+  </form>`;
+  formularioSalida.appendChild(agregoFormularioFinal);     
+ 
   let compraConfirmadisima = document.getElementById("compraConfirmada");
   compraConfirmadisima.onclick = function(e) {  
-    e.preventDefault();
+    e.preventDefault();   
     confirmandoCompra ();
   }
-
-  
-
 }
 
 // SEGUNDA COMPRA
@@ -196,25 +190,27 @@ function segundaCompra () {
 
     //BOTÓN FINALIZAR COMPRA
     let botonDeConfirmar = document.getElementById("confirmandoCompra");
-    botonDeConfirmar.onclick = function() {                  
-        // ACA VA UN SWEET ALERT 2
-        salidaFinal();      
+    botonDeConfirmar.addEventListener("click", finalizandoCompra);
+
+    function finalizandoCompra () {
+
+      botonDeConfirmar.removeEventListener("click", finalizandoCompra);     
+
+      salidaFinal();       
     }
-
+        
     //BOTÓN ELIMINAR CARRITO
-
     let botonEliminarCarrito = document.getElementById("eliminandoCompra");
  
-    botonEliminarCarrito.onclick = function() {    
-      
-      SWEETeliminandoCarrito ();    
-     
+    botonEliminarCarrito.onclick = function() { 
+            
+      SWEETeliminandoCarrito ();         
     } 
 
-    // CLICK BOTÓN AGREGAR AL CARRITO
-    agregarAlCarrito.onclick = function(e) {  
-      e.preventDefault();      
-  
+     // CLICK BOTÓN AGREGAR AL CARRITO
+     agregarAlCarrito.onclick = function(e) {  
+      e.preventDefault();       
+      
       if (subTotal.placeholder === "$ -" || precioEntrada.placeholder === "$ -") {
         SWEETcarritoVacioError ();       
       } else {
@@ -222,10 +218,14 @@ function segundaCompra () {
         SWEETagregandoAlCarrito();           
 
         llenarCarrito.push(Number(subTotal.placeholder));
-        console.log(llenarCarrito);     
+        console.log(llenarCarrito);   
+        
 
         // SUMANDO VALORES DEL ARRAY
-         let total = llenarCarrito.reduce((acumulador, elemento) => acumulador + elemento, 0);
+        total = llenarCarrito.reduce((acumulador, elemento) => acumulador + elemento, 0);
+
+        let btnTotalAPagar = document.getElementById("totalAPagar");    
+        btnTotalAPagar.placeholder = `$${total}`;   
         
         // LOCAL STORAGE
         let llenarCarritoStr = JSON.stringify(llenarCarrito)
@@ -237,19 +237,14 @@ function segundaCompra () {
         agregoFormulario.innerHTML = `<tr>
         <th scope="row">${selectedOption2.value}</th>
         <td>${selectedOption.nombre}</td>
-        <td>$ ${subTotal.placeholder}</td>
-        <td>$ ${total}</td>
+        <td>$ ${subTotal.placeholder}</td>        
         </tr>`;
-        agregandoCosas.appendChild(agregoFormulario); 
-
-        renderizandoInputs ();  
-
+        agregandoCosas.appendChild(agregoFormulario);  
+        
+        renderizandoInputs (); 
       }
-    }                      
-     
-} 
-
-
+    }                   
+}
 
 // BOTÓN AGREGAR AL CARRITO PREVIENE RECARGA DE PÁGINA, PUSHEA LO COMPRADO AL CARRITO, DESPLIEGA UNA TABLA CON LO ADQUIRIDO
 let agregarAlCarrito = document.querySelector(".btn");
@@ -266,7 +261,7 @@ agregarAlCarrito.onclick = function(e) {
       llenarCarrito.push(Number(subTotal.placeholder)); 
 
       // SUMANDO VALORES DEL ARRAY
-      let total = llenarCarrito.reduce((acumulador, elemento) => acumulador + elemento, 0); 
+      total = llenarCarrito.reduce((acumulador, elemento) => acumulador + elemento, 0); 
       console.log(llenarCarrito);
       
       // LOCAL STORAGE
@@ -277,23 +272,28 @@ agregarAlCarrito.onclick = function(e) {
       let formularioFinal = document.getElementById("formularioEntradas");
       let agregoFormulario = document.createElement("div");
       agregoFormulario.innerHTML = `<table class="table">
-      <thead>
-        <tr>
-          <th scope="col">Cantidad de entradas</th>
-          <th scope="col">Banda</th>
-          <th scope="col">Subtotal</th>
-          <th scope="col">Total</th>
-        </tr>
-      </thead>
-      <tbody class="table-group-divider">
-        <tr>
-          <th scope="row">${selectedOption2.value}</th>
-          <td>${selectedOption.nombre}</td>
-          <td>$ ${subTotal.placeholder}</td>
-          <td>$ ${total}</td>
-        </tr>      
-      </tbody>
-    </table>`;
+        <thead>
+          <tr>
+            <th scope="col">Cantidad de entradas</th>
+            <th scope="col">Banda</th>
+            <th scope="col">Subtotal</th>            
+          </tr>
+        </thead>
+        <tbody class="table-group-divider">
+          <tr>
+            <th scope="row">${selectedOption2.value}</th>
+            <td>${selectedOption.nombre}</td>
+            <td>$ ${subTotal.placeholder}</td>            
+          </tr>      
+        </tbody>
+      </table>
+      <fieldset disabled="disabled">
+        <div> 
+          <label>TOTAL A PAGAR</label>
+          <input id="totalAPagar" placeholder="$${total}"/>
+        </div>
+      </fieldset> `;
+      agregoFormulario.className = "btnEliminarCarrito";
       formularioFinal.appendChild(agregoFormulario);
 
       // CREACIÓN BOTONES 'FINALIZAR COMPRA' Y 'CONFIRMAR COMPRA'
