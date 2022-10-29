@@ -14,6 +14,12 @@
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
     <!-- mi css -->
     <link rel="stylesheet" href="css/index.css">  
+    <!-- FONTS   -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Alegreya+Sans+SC:ital,wght@1,400;1,800&family=Montserrat:ital,wght@1,400;1,700&display=swap" rel="stylesheet">
+    <!-- pattern -->
+    <link href="https://unpkg.com/pattern.css" rel="stylesheet">  
 </head>
 <body>     
     <header>    
@@ -21,7 +27,7 @@
         <nav class="navbar navbar-expand-md">
             <div class="container-fluid">
             <a class="navbar-brand" href="index.html">
-                <img src="img/cultura_musical.png" alt="logo principal del sitio" id="nav_img">
+                <h1 class="logito">CINEROCK</h1>
             </a>
             <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
                 <span class="navbar_toggler_icon"></span>
@@ -32,92 +38,104 @@
     </header>
 <main> 
     <div>
-        <h1 class="font_h1">¡Mirá todos los recitales que se vienen!</h1>      
+        <h1 class="subtitulo">¡Mirá todos los recitales que se vienen!</h1>      
     </div>   
     <section class="section__recitales">
         <div>
-            <h2 class="font_h2">Agenda 2022</h2>
+            <h2 class="section__recitales-tittle">Agenda 2022</h2>
         </div>
-        <div>
-            <div id="contenedor">
+        <article class="tarjeta1">
+            <div class="card" style="width: 18rem;">
+                <img src="https://www.biografiasyvidas.com/biografia/q/fotos/queen.jpg" class="card-img-top" alt="...">
+                <div class="card-body back">
+                  <h5 class="card-title titulocard">Queen</h5>
+                  <p class="card-text">Wembley Stadium</p>
+                  <p class="card-text">15/12/1986</p>
+                  <p class="card-text">22 hs</p>
+                  <p class="card-text">$150 c/u</p>
+                </div>
             </div>
-            <div id="selectorQueen" class="seleccion">
-                <h3>Queen</h3>
-                <p>Wembley Stadium</p>
-                <p>15/12/1986</p>                               
-                <p>22 hs.</p>
-                <p>$150 c/u</p>
+        </article>
+        <article class="tarjeta2">
+            <div class="card" style="width: 18rem;">
+                <img src="https://sites.google.com/site/bandasderocklcb/_/rsrc/1472852010819/pink-floyd/la-fama-mundial-de-pink-floyd.jpg" class="card-img-top" alt="...">
+                <div class="card-body back">
+                  <h5 class="card-title titulocard">Pink Floyd</h5>
+                  <p class="card-text">Carino Magic</p>
+                  <p class="card-text">15/12/2022</p>
+                  <p class="card-text">21 hs.</p>
+                  <p class="card-text">$250 c/u</p>
+                </div>
             </div>
-            <div id="selectorPink" class="seleccion">
-                <h3>Pink Floyd</h3>
-                <p>Carino Magic
-                <p>15/12/2022</p> 
-                <p>21 hs.</p>
-                <p>$250 c/u</p>
+        </article>
+        <article class="tarjeta3">
+            <div class="card" style="width: 18rem;">
+                <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSCMhkf5Z96XNhWCTDmuS4d45S2dhyJPhAFkw&usqp=CAU" class="card-img-top" alt="...">
+                <div class="card-body back">
+                  <h5 class="card-title titulocard">Red Hot Chili Peppers</h5>
+                  <p class="card-text">Slane Castle</p>
+                  <p class="card-text">21/12/2022</p>
+                  <p class="card-text">22.30 hs.</p>
+                  <p class="card-text">$120 c/u</p>
+                </div>
             </div>
-            <div id="selectorRed" class="seleccion">
-                <h3>Red Hot Chili Peppers</h3>                
-                <p>Slane Castle</p>
-                <p>21/12/2022</p>
-                <p>22.30 hs.</p>
-                <p>$120 c/u</p>
-            </div>                             
-        </div>
-    </section> 
-    <section> 
-        <div>
-            <form id="formularioEleccion">
+        </article>                           
+    </section>   
+    <section class="sectionform">         
+        <form id="formularioEleccion">            
+            <div class="eleccionBanda">
                 <label>Elija la banda</label> 
-                <select name="seleccionBanda" id="seleccionBanda"> 
+                <select class="selectBack" name="seleccionBanda" id="seleccionBanda"> 
                     <option value="" disabled selected>...</option>
-                        <option value="1">QUEEN</option>
-                        <option value="2">PINK FLOYD</option>
-                        <option value="3">RED HOT CHILI PEPPERS</option>                  
+                    <option value="1">QUEEN</option>
+                    <option value="2">PINK FLOYD</option>
+                    <option value="3">RED HOT CHILI PEPPERS</option>                  
                 </select>
-                </div>      
-                <div>
-                    <label>Elija la cantidad de entradas</label> 
-                    <select name="cantidadDeEntradas" id="cantidadDeEntradas"> 
-                        <option value="" disabled selected>...</option>
-                        <option value="1">1</option>
-                        <option value="2">2</option>
-                        <option value="3">3</option>                  
-                        <option value="4">4</option>                  
-                    </select>
-                    <fieldset disabled="disabled">
-                        <div> 
-                            <label>Precio x entrada</label>
-                            <input id="precioEntrada" placeholder="$ -"/>
-                        </div>
-                        <div>
-                            <label>Subtotal</label>
-                            <input id="subtotal"placeholder="$ -"/>
-                        </div>
-                        </fieldset>
-                        </div>               
-                    </div>                  
-                    <div class="col-md-3">
-                    <button class="btn btn-primary" id="agregandoCarrito agregandoCarrito2" type="submit">Agregar al carrito</button>        
+            </div>      
+            <div class="eleccionCant">
+                <label>Elija la cantidad de entradas</label> 
+                <select class="selectBack" name="cantidadDeEntradas" id="cantidadDeEntradas"> 
+                    <option value="" disabled selected>...</option>
+                    <option value="1">1</option>
+                    <option value="2">2</option>
+                    <option value="3">3</option>                  
+                    <option value="4">4</option>                  
+                </select>
+            </div> 
+            <fieldset disabled="disabled">            
+                <div class="priceEntrada"> 
+                    <label>Precio x entrada</label>
+                    <input class="input" id="precioEntrada" placeholder="$ -"/>
                 </div>
-            </form>
-                <div id="formularioEntradas">
+                <div class="subtotal">
+                    <label>Subtotal</label>
+                    <input class="input" id="subtotal"placeholder="$ -"/>
                 </div>
-                <div id="formularioFinal">
-
+            </fieldset>                 
+            <div class="row-md-3 button">
+                <button class="btn btn-outline-success" id="agregandoCarrito agregandoCarrito2" type="submit">Agregar al carrito</button>        
             </div>
+        </form>
+        <div id="formularioEntradas">
+        </div>
+        <div id="formularioFinal">
+        </div>
     </section>     
-    <div>     
-        
-    </div>
-    <div class="main__div main__div2 main__div3">
-        <p class="wP" id="wP">Esta página es posible gracias a los siguientes complejos</p>       
-        <img src="img/cine_espanol.jfif" alt="logo de Cine Español" class="sizeImg">
-        <img src="img/cinemark.jfif" alt="logo de Cinemarkhoyts" class="sizeImg">
-        <img src="img/cinepolis.jpg" alt="logo de Cinépolis" class="sizeImg">
-        <img src="img/mood_live.jfif" alt="logo de Moodlive" class="sizeImg">
-        <img src="img/ruca_che.jfif" alt="logo de Ruca Che" class="sizeImg"> 
-        <img src="img/pirkas.jfif" alt="logo de Pirkas" class="sizeImg">         
-    </div>    
+    <section class="sectionFINAL">
+        <div class="subtituloFinal">
+            <p class="wP" id="wP">Esta página es posible gracias a los siguientes complejos</p>
+        </div>
+        <div class="imgDIV">
+            <img src="img/cine_espanol.jfif" alt="logo de Cine Español" class="sizeImg imgStyle4">
+            <img src="img/cinemark.jfif" alt="logo de Cinemarkhoyts" class="sizeImg imgStyle5">
+            <img src="img/cinepolis.jpg" alt="logo de Cinépolis" class="sizeImg imgStyle6">
+        </div>
+        <div class="imgDIV">
+            <img src="img/mood_live.jfif" alt="logo de Moodlive" class="sizeImg imgStyle">
+            <img src="img/ruca_che.jfif" alt="logo de Ruca Che" class="sizeImg imgStyle2"> 
+            <img src="img/pirkas.jfif" alt="logo de Pirkas" class="sizeImg imgStyle3">         
+        </div>          
+    </section>  
 </main> 
     <footer class="pie">
         <h4>Seguinos en nuestras redes</h4>

@@ -15,6 +15,7 @@ const banda3 = new Bandas (3, "Red Hot Chili Peppers", "21/12/2022", "22.30 hs."
 
 // ARRAYS
 let llenarCarrito = [];
+let carritoObjetoArray = [];
 
 // VARIABLES
 let total = 0;
@@ -45,7 +46,6 @@ selectBanda.addEventListener('change',
     precioEntrada.placeholder = (selectedOption.precio);  
   });   
 
-
 // BOTÓN CANTIDAD DE ENTRADAS
 let selectCantidad = document.getElementById("cantidadDeEntradas");
 
@@ -66,7 +66,6 @@ selectCantidad.addEventListener('change',
         subTotal.placeholder = (selectedOption.precio * 4);        
     }    
 });
-
 
 // FUNCIÓN PARA RENDERIZAR LOS INPUTS
 function renderizandoInputs () {
@@ -96,32 +95,73 @@ function SWEETcarritoVacioError () {
   })
 }
 
-
-// FUNCIÓN CONFIRMANDO COMPRA SWEET ALERT 2
-function confirmandoCompra () {  
-
+// FUNCIÓN DE ERROR NÚMEROS DE TARJETA
+function SWEETerrorTarjeta () {
   Swal.fire({
-    title: '¿Desea confirmar la compra?',   
-    icon: 'warning',
-    showCancelButton: true,
-    confirmButtonColor: '#3085d6',
-    cancelButtonColor: '#d33',
-    confirmButtonText: 'Si, confirmar compra!'
-  }).then((result) => {
-    if (result.isConfirmed) {
-      location.reload();      
-    }
-  })    
+    icon: 'error',
+    title: 'Oops...',
+    text: 'Revisar que sean 16 los números ingresados de la tarjeta',    
+  })
 }
 
+// FUNCIÓN DE ERROR NOMBRE Y APELLIDO
+function SWEETerrorNombre () {
+  Swal.fire({
+    icon: 'error',
+    title: 'Oops...',
+    text: 'Ingresar correctamente el nombre y apellido',    
+  })
+}
+
+// FUNCIÓN DE ERROR CÓDIGO DE SEGURIDAD
+function SWEETerrorCod () {
+  Swal.fire({
+    icon: 'error',
+    title: 'Oops...',
+    text: 'Revisar que sean 3 los números ingresados para el código de seguridad',    
+  })
+}
+
+// FUNCIÓN DE ERROR FECHA DE VENCIMIENTO
+function SWEETerrorFecha () {
+  Swal.fire({
+    icon: 'error',
+    title: 'Oops...',
+    text: 'Revisar que sean 4 los números ingresados para la fecha de vencimiento',    
+  })
+}
+
+// FUNCIÓN DE ERROR EMAIL
+function SWEETerrorEmail () {
+  Swal.fire({
+    icon: 'error',
+    title: 'Oops...',
+    text: 'Escribe correctamente el email',    
+  })
+}
+
+// FUNCIÓN DE ERROR NÚMERO DE CONTACTO
+function SWEETerrorContacto () {
+  Swal.fire({
+    icon: 'error',
+    title: 'Oops...',
+    text: 'Escribe correctamente el número de contacto',    
+  })
+}
+
+function SWEERcarritoError () {
+  Swal.fire({
+    icon: 'error',
+    title: 'Oops...',
+    text: 'Ya contienes entradas de esta banda, elija otra por favor',    
+  })
+}
+ 
 // FUNCIÓN ELIMINANDO CARRITO SWEET ALERT 2
 function SWEETeliminandoCarrito () {
 
   llenarCarrito.splice(0, llenarCarrito.length);
   total = 0;
-
-
-  // ELIMINAR CARRITO DEL LOCAL STORAGE
 
   Swal.fire({    
     title: '¿Estás seguro de eliminar todo el carrito?',   
@@ -131,109 +171,194 @@ function SWEETeliminandoCarrito () {
     cancelButtonColor: '#d33',
     confirmButtonText: 'Si, eliminar!'
   }).then((result) => {
-    if (result.isConfirmed) {
-      //let eliminandoTabla = document.querySelector(".btnEliminarCarrito");    
-      //eliminandoTabla.remove();     
+    if (result.isConfirmed) {        
       location.reload();      
     }    
   })    
 }
 
-// FUNCIÓN SALIDA FINAL
-function salidaFinal () {  
- 
-  let formularioSalida = document.getElementById("formularioFinal");
-  let agregoFormularioFinal = document.createElement("div");
-  agregoFormularioFinal.innerHTML = `<h2>Ingrese los datos de su tarjeta</h2>
-  <form class="row g-3">
-  <div class="col-md-3">
-    <label for="validationDefault01" class="form-label">Número de tarjeta</label>
-    <input type="number" class="form-control" id="validationDefault01" value="" placeholder="xxxx xxxx xxxx xxxx" required>
-  </div>
-  <div class="col-md-3">
-    <label for="validationDefault02" class="form-label">Nombre y Apellido</label>
-    <input type="text" class="form-control" id="validationDefault02" value="" placeholder="Tal cual figura en la tarjeta" required>
-  </div>
-  <div class="col-md-2">
-    <label for="validationDefault02" class="form-label">Código de seguridad</label>
-    <input type="number" class="form-control" id="validationDefault02" value="" placeholder="xxx" required>
-  </div> 
-  <div class="col-md-2">
-    <label for="validationDefault02" class="form-label">Fecha de vencimiento</label>
-    <input type="number" class="form-control" id="validationDefault02" value="" placeholder="MMAA" required>
-  </div>  
-  <div class="col-md-3">
-    <label for="validationDefault03" class="form-label">Email</label>
-    <input type="email" class="form-control" id="validationDefault03" placeholder="ejemplo@masejemplo.com.ar" required>
-  </div>
-  <div class="col-md-3">
-    <label for="validationDefault01" class="form-label">N° de contacto</label>
-    <input type="number" class="form-control" id="validationDefault01" value="" placeholder="Número de área + Número telefónico" required>
-  </div>      
-  <div class="col-12">
-    <button class="btn btn-primary" id="compraConfirmada" type="submit">Confirmar compra</button>
-  </div>  
-  </form>`;
-  formularioSalida.appendChild(agregoFormularioFinal);     
- 
-  let compraConfirmadisima = document.getElementById("compraConfirmada");
-  compraConfirmadisima.onclick = function(e) {  
-    e.preventDefault();   
-    confirmandoCompra ();
-  }
+// FUNCIÓN CONFIRMANDO COMPRA SWEET ALERT 2
+function confirmandoCompra () { 
+
+  let nombreYApellidoStrVuelta = JSON.parse(localStorage.getItem("Nombre y Apellido"));
+
+  Swal.fire({
+    title: '¿Desea confirmar la compra?',   
+    icon: 'warning',
+    showCancelButton: true,
+    confirmButtonColor: '#3085d6',
+    cancelButtonColor: '#d33',
+    confirmButtonText: 'Si, confirmar compra!'
+  }).then((result) => {
+    if (result.isConfirmed) {     
+      Swal.fire({
+        title: `Gracias por su compra ${nombreYApellidoStrVuelta}`,   
+        icon: 'success',
+        text: 'Corroboramos los datos ingresados y nos pondremos en contacto para informarle novedades!',        
+        confirmButtonColor: '#3085d6',       
+        confirmButtonText: 'Aceptar'
+      }).then((result) => {
+        if (result.isConfirmed) {  
+          location.reload();      
+        }
+      })       
+    }
+  })
 }
 
-// SEGUNDA COMPRA
+// FUNCIÓN SALIDA FINAL
+function salidaFinal () {  
+  //BOTÓN FINALIZAR COMPRA
+  let botonDeConfirmar = document.getElementById("confirmandoCompra");
+  botonDeConfirmar.addEventListener("click", finalizandoCompra);    
 
-// AGREGO MAS COSAS AL CARRITO Y SE CREA NUEVA FILA
+    function finalizandoCompra (e) {
+   
+      e.preventDefault()              
+
+    }
+
+  let formularioSalida = document.getElementById("formularioFinal");
+  let agregoFormularioFinal = document.createElement("div");
+  agregoFormularioFinal.innerHTML = `<h2 class="section__recitales-tittle">Ingrese los datos de su tarjeta</h2>
+  <form class="col g-3">
+    <div class="row-md-3 subtotal">
+      <label for="validationDefault01" class="form-label">Número de tarjeta</label>
+      <input type="number" class="form-control input" id="validationDefault01" value="" placeholder="xxxx xxxx xxxx xxxx" required>
+    </div>
+    <div class="row-md-3 subtotal">
+      <label for="validationDefault02" class="form-label">Nombre y Apellido</label>
+      <input type="text" class="form-control input" id="validationDefault02" value="" placeholder="Tal cual figura en la tarjeta" required>
+    </div>
+    <div class="row-md-2 subtotal">
+      <label for="validationDefault03" class="form-label">Código de seguridad</label>
+      <input type="number" class="form-control input" id="validationDefault03" value="" placeholder="xxx" required>
+    </div> 
+    <div class="row-md-2 subtotal">
+      <label for="validationDefault04" class="form-label">Fecha de vencimiento</label>
+      <input type="number" class="form-control input" id="validationDefault04" value="" placeholder="MMAA" required>
+    </div>  
+    <div class="row-md-3 subtotal">
+      <label for="validationDefault05" class="form-label">Email</label>
+      <input type="email" class="form-control input" id="validationDefault05" placeholder="ejemplo@masejemplo.com.ar" required>
+    </div>
+    <div class="row-md-3 subtotal">
+      <label for="validationDefault06" class="form-label">N° de contacto</label>
+      <input type="number" class="form-control input" id="validationDefault06" value="" placeholder="EJ: 0299 - 154204258" required>
+    </div>  
+    <div class="row-md-3 button">
+      <button class="btn btn-outline-success" id="compraConfirmada" type="submit">Confirmar compra</button>
+    </div>
+  </form>`;
+  formularioSalida.appendChild(agregoFormularioFinal);   
+
+  let compraConfirmadisima = document.getElementById("compraConfirmada");  
+   
+  compraConfirmadisima.onclick = function(e) { 
+
+    e.preventDefault();
+
+    let numTarjeta = document.getElementById("validationDefault01");
+    let nombreApellido = document.getElementById("validationDefault02");
+    let codSeguridad = document.getElementById("validationDefault03");
+    let fechaVencimiento = document.getElementById("validationDefault04");
+    let email2 = document.getElementById("validationDefault05");
+    let numContacto = document.getElementById("validationDefault06");
+
+    if (numTarjeta.value === "" || numTarjeta.value == null || numTarjeta.value.length != 16) {
+      SWEETerrorTarjeta();
+    } else if (nombreApellido.value === "" || nombreApellido.value == null) {
+      SWEETerrorNombre();
+    } else if (codSeguridad.value === "" || codSeguridad.value == null || codSeguridad.value.length != 3) {
+      SWEETerrorCod();
+    } else if (fechaVencimiento.value === "" || fechaVencimiento.value == null || fechaVencimiento.value.length != 4) {
+      SWEETerrorFecha();
+    } else if (email2.value === "" || email2.value == null) {
+      SWEETerrorEmail();
+    } else if (numContacto.value === "" || numContacto.value == null) {
+      SWEETerrorContacto();
+    } else {
+
+      // LOCAL STORAGE ARRAY
+      let nombreYApellidoStr = JSON.stringify(nombreApellido.value);
+      localStorage.setItem("Nombre y Apellido", nombreYApellidoStr);      
+
+      confirmandoCompra ();
+    }  
+   }      
+}
+
+// SEGUNDA COMPRA  //
 function segundaCompra () {
 
     //BOTÓN FINALIZAR COMPRA
     let botonDeConfirmar = document.getElementById("confirmandoCompra");
-    botonDeConfirmar.addEventListener("click", finalizandoCompra);
+    botonDeConfirmar.addEventListener("click", finalizandoCompra);    
 
-    function finalizandoCompra () {
+    function finalizandoCompra (e) {
+   
+      e.preventDefault()
 
-      botonDeConfirmar.removeEventListener("click", finalizandoCompra);     
+      botonDeConfirmar.removeEventListener("click", finalizandoCompra); 
 
-      salidaFinal();       
+      salidaFinal();        
+
     }
-        
+   
     //BOTÓN ELIMINAR CARRITO
     let botonEliminarCarrito = document.getElementById("eliminandoCompra");
  
-    botonEliminarCarrito.onclick = function() { 
-            
+    botonEliminarCarrito.onclick = function(ev) { 
+
+      ev.preventDefault(); 
+
       SWEETeliminandoCarrito ();         
     } 
 
      // CLICK BOTÓN AGREGAR AL CARRITO
-     agregarAlCarrito.onclick = function(e) {  
-      e.preventDefault();       
+     agregarAlCarrito.onclick = function(evt) { 
+
+      evt.preventDefault();       
       
       if (subTotal.placeholder === "$ -" || precioEntrada.placeholder === "$ -") {
-        SWEETcarritoVacioError ();       
+        SWEETcarritoVacioError ();  
+
+      } else if (carritoObjetoArray.find(objeto => objeto === selectedOption)) {
+        SWEERcarritoError ();
+        renderizandoInputs ();
+
       } else {
 
         SWEETagregandoAlCarrito();           
 
-        llenarCarrito.push(Number(subTotal.placeholder));
-        console.log(llenarCarrito);   
-        
+        llenarCarrito.push(Number(subTotal.placeholder));   
+        carritoObjetoArray.push(selectedOption);      
 
         // SUMANDO VALORES DEL ARRAY
         total = llenarCarrito.reduce((acumulador, elemento) => acumulador + elemento, 0);
 
-        let btnTotalAPagar = document.getElementById("totalAPagar");    
+        let btnTotalAPagar = document.getElementById("totalAPagar"); 
+
         btnTotalAPagar.placeholder = `$${total}`;   
         
-        // LOCAL STORAGE
-        let llenarCarritoStr = JSON.stringify(llenarCarrito)
+          // LOCAL STORAGE ARRAY
+        let llenarCarritoStr = JSON.stringify(llenarCarrito);
+
         localStorage.setItem("carrito", llenarCarritoStr);
 
+        let llenarCarritoStrVuelta = JSON.parse(localStorage.getItem("carrito"));    
+
+        // LOCAL STORAGE OBJETO
+        let bandaCompleta = JSON.stringify(selectedOption);
+
+        localStorage.setItem("Recital" , bandaCompleta);
+
+        let bandaCompletaVuelta = localStorage.getItem("Recital");     
+
         // AGREGANDO FILAS
-        let agregandoCosas = document.querySelector(".table-group-divider");
+        let agregandoCosas = document.querySelector(".table-group-divider");        
         let agregoFormulario = document.createElement("tr");
+
         agregoFormulario.innerHTML = `<tr>
         <th scope="row">${selectedOption2.value}</th>
         <td>${selectedOption.nombre}</td>
@@ -246,32 +371,41 @@ function segundaCompra () {
     }                   
 }
 
-// BOTÓN AGREGAR AL CARRITO PREVIENE RECARGA DE PÁGINA, PUSHEA LO COMPRADO AL CARRITO, DESPLIEGA UNA TABLA CON LO ADQUIRIDO
+// BOTÓN AGREGAR AL CARRITO 
 let agregarAlCarrito = document.querySelector(".btn");
 
 // PRIMER COMPRA
 agregarAlCarrito.onclick = function(e) {  
-    e.preventDefault();
+    e.preventDefault();     
 
-    if (subTotal.placeholder === "$ -") {
+    if (subTotal.placeholder === "$ -" || precioEntrada.placeholder === "$ -") {
       SWEETcarritoVacioError ();      
     } else {
       SWEETagregandoAlCarrito();      
 
       llenarCarrito.push(Number(subTotal.placeholder)); 
-
-      // SUMANDO VALORES DEL ARRAY
-      total = llenarCarrito.reduce((acumulador, elemento) => acumulador + elemento, 0); 
-      console.log(llenarCarrito);
+      carritoObjetoArray.push(selectedOption);
       
-      // LOCAL STORAGE
-      let llenarCarritoStr = JSON.stringify(llenarCarrito)
+      // SUMANDO VALORES DEL ARRAY
+      total = llenarCarrito.reduce((acumulador, elemento) => acumulador + elemento, 0);  
+      
+      // LOCAL STORAGE ARRAY
+      let llenarCarritoStr = JSON.stringify(llenarCarrito);
       localStorage.setItem("carrito", llenarCarritoStr);
+
+      let llenarCarritoStrVuelta = JSON.parse(localStorage.getItem("carrito"));
+
+      // LOCAL STORAGE OBJETO
+      let bandaCompleta = JSON.stringify(selectedOption);
+      localStorage.setItem("Recital" , bandaCompleta);
+
+      let bandaCompletaVuelta = localStorage.getItem("Recital");
 
       //CREACIÓN DE TABLA CON PRODUCTOS DEL CARRITO
       let formularioFinal = document.getElementById("formularioEntradas");
       let agregoFormulario = document.createElement("div");
-      agregoFormulario.innerHTML = `<table class="table">
+      agregoFormulario.innerHTML = `
+      <table class="table colorTable">
         <thead>
           <tr>
             <th scope="col">Cantidad de entradas</th>
@@ -288,30 +422,32 @@ agregarAlCarrito.onclick = function(e) {
         </tbody>
       </table>
       <fieldset disabled="disabled">
-        <div> 
+        <div class="subtotal"> 
           <label>TOTAL A PAGAR</label>
-          <input id="totalAPagar" placeholder="$${total}"/>
+          <input class="input" id="totalAPagar" placeholder="$${total}"/>
         </div>
       </fieldset> `;
-      agregoFormulario.className = "btnEliminarCarrito";
+      
       formularioFinal.appendChild(agregoFormulario);
 
       // CREACIÓN BOTONES 'FINALIZAR COMPRA' Y 'CONFIRMAR COMPRA'
-      let botonNuevo = document.querySelector(".col-md-3");
-      let botonConfirmar = document.createElement("button");
-      botonConfirmar.innerHTML = `<button class="btn btn-primary" id="confirmandoCompra" type="submit">Finalizar Compra</button>`;  
-      botonNuevo.appendChild(botonConfirmar);
-      let botonNuevo2 = document.querySelector(".col-md-3");
-      let botonEliminar = document.createElement("button");
-      botonEliminar.innerHTML = `<button class="btn btn-primary" id="eliminandoCompra" type="submit">Eliminar carrito</button>`;  
-      botonNuevo2.appendChild(botonEliminar);
+     
+      let botonNuevo = document.querySelector(".button");
+      let botonConfirmar = document.createElement("div");     
+      let botonEliminar = document.createElement("div");
+
+      botonConfirmar.innerHTML = `<button class="btn btn-outline-success" id="confirmandoCompra" type="submit">Finalizar Compra</button>`;  
+      botonConfirmar.className = "row-md-3 button";
+      botonNuevo.appendChild(botonConfirmar);       
+      
+      botonEliminar.innerHTML = `<button class="btn btn-outline-success" id="eliminandoCompra" type="submit">Eliminar carrito</button>`;  
+      botonEliminar.className = "row-md-3 button";
+      botonNuevo.appendChild(botonEliminar);
     }       
+
     renderizandoInputs ();  
-    segundaCompra(); 
-}
+    segundaCompra();  
 
-
-
-
+  }
 
 
