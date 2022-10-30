@@ -1,3 +1,6 @@
+
+
+
 // OBJETOS A PARTIR DE UNA FUNCION
 function Bandas (id, nombre, fecha, hora, lugar, precio) {
     this.id = id;
@@ -234,18 +237,19 @@ function SWEETeliminandoCarrito () {
   llenarCarrito.splice(0, llenarCarrito.length);
   total = 0; 
 
-  Swal.fire({    
-    title: '¿Estás seguro de eliminar todo el carrito?',   
-    icon: 'warning',
-    showCancelButton: true,
-    confirmButtonColor: '#3085d6',
-    cancelButtonColor: '#d33',
-    confirmButtonText: 'Si, eliminar!'
-  }).then((result) => {
-    if (result.isConfirmed) {        
-      location.reload();      
-    }    
-  })    
+  Toastify({
+    text: "HAZ CLICK AQUI PARA ELIMINAR EL CARRITO",
+    duration: 5000,
+    style: {
+      background: "linear-gradient(to right, #00b09b, #96c93d)",
+    },
+    onClick: () => {
+
+      location.reload();       
+        
+    }
+  }).showToast();
+  
 }
 
 // FUNCIÓN CONFIRMANDO COMPRA SWEET ALERT 2
@@ -253,28 +257,19 @@ function confirmandoCompra () {
 
   let nombreYApellidoStrVuelta = JSON.parse(localStorage.getItem("Nombre y Apellido"));
 
-  Swal.fire({
-    title: '¿Desea confirmar la compra?',   
-    icon: 'warning',
-    showCancelButton: true,
-    confirmButtonColor: '#3085d6',
-    cancelButtonColor: '#d33',
-    confirmButtonText: 'Si, confirmar compra!'
-  }).then((result) => {
-    if (result.isConfirmed) {     
-      Swal.fire({
-        title: `Gracias por tu compra ${nombreYApellidoStrVuelta}`,   
-        icon: 'success',
-        text: 'Chequeamos los datos ingresados y nos ponemos en contacto, hasta la próxima!',        
-        confirmButtonColor: '#3085d6',       
-        confirmButtonText: 'Aceptar'
-      }).then((result) => {
-        if (result.isConfirmed) {  
-          location.reload();      
-        }
-      })       
+  Toastify({
+    text: `HAZ CLICK AQUI PARA CONFIRMAR LA COMPRA ${nombreYApellidoStrVuelta}. NOS PONDREMOS EN CONTACTO, GRACIAS POR SU COMPRA!`,
+    duration: 8000,
+    style: {
+      background: "linear-gradient(to right, #00b09b, #96c93d)",
+    },
+    onClick: () => {
+
+      location.reload();       
+        
     }
-  })
+  }).showToast();
+  
 }
 
 // FUNCIÓN SALIDA FINAL
