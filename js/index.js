@@ -1,5 +1,4 @@
 // OBJETOS A PARTIR DE UNA FUNCION
-
 function Bandas (id, nombre, fecha, hora, lugar, precio) {
     this.id = id;
     this.nombre = nombre;
@@ -56,15 +55,8 @@ let subTotal = document.getElementById("subtotal");
 selectCantidad.addEventListener('change',
   function(){
     selectedOption2 = this.options[selectCantidad.selectedIndex];
-    if (selectedOption2.value == 1) { 
-        subTotal.placeholder = (selectedOption.precio * 1);    
-    } else if (selectedOption2.value == 2) { 
-        subTotal.placeholder = (selectedOption.precio * 2);       
-    } else if (selectedOption2.value == 3) {   
-        subTotal.placeholder = (selectedOption.precio * 3);       
-    } else if (selectedOption2.value == 4) {  
-        subTotal.placeholder = (selectedOption.precio * 4);        
-    }    
+    subTotal.placeholder = (selectedOption.precio * selectCantidad.value);
+    
 });
 
 // FUNCIÓN PARA RENDERIZAR LOS INPUTS
@@ -77,91 +69,170 @@ function renderizandoInputs () {
 
 // FUNCIÓN AGREGAR AL CARRITO SWEET ALERT 2
 function SWEETagregandoAlCarrito () {
-  Swal.fire({
-    position: 'top-end',
-    icon: 'success',
-    title: 'Agregaste al carrito',
-    showConfirmButton: false,
-    timer: 2000
-})
+  Toastify({
+    text: "Agregaste al carrito!",
+    duration: 3000,  
+    newWindow: true,
+    close: true,
+    gravity: "top", 
+    position: "right",
+    stopOnFocus: true, 
+    style: {
+      background: "linear-gradient(to right, #00b09b, #96c93d)",
+    },
+    onClick: function(){}
+  }).showToast();
+
 }
 
-// FUNCIÓN DE ERROR CUANDO NO HAY NADA EN EL CARRITO
+// FUNCIÓN DE ERROR CUANDO NO HAY NADA EN ALGÚN INPUT
 function SWEETcarritoVacioError () {
-  Swal.fire({
-    icon: 'error',
-    title: 'Oops...',
-    text: 'Parece que ando anduvo mal!',    
-  })
+  Toastify({
+    text: "¡Parece que algo anduvo mal!",
+    duration: 3000,  
+    newWindow: true,
+    close: true,
+    gravity: "top", 
+    position: "center",
+    stopOnFocus: true, 
+    style: {
+      background: "linear-gradient(to right, #00b09b, #96c93d)",
+    },
+    onClick: function(){} 
+  }).showToast();
+
 }
 
 // FUNCIÓN DE ERROR NÚMEROS DE TARJETA
 function SWEETerrorTarjeta () {
-  Swal.fire({
-    icon: 'error',
-    title: 'Oops...',
-    text: 'Revisar que sean 16 los números ingresados de la tarjeta',    
-  })
+  Toastify({
+    text: "Revisar que sean 16 los números ingresados de la tarjeta",
+    duration: 3000,  
+    newWindow: true,
+    close: true,
+    gravity: "bottom", 
+    position: "center",
+    stopOnFocus: true, 
+    style: {
+      background: "linear-gradient(to right, #00b09b, #96c93d)",
+    },
+    onClick: function(){} 
+  }).showToast();
+  
 }
 
 // FUNCIÓN DE ERROR NOMBRE Y APELLIDO
 function SWEETerrorNombre () {
-  Swal.fire({
-    icon: 'error',
-    title: 'Oops...',
-    text: 'Ingresar correctamente el nombre y apellido',    
-  })
+  Toastify({
+    text: "Ingresa correctamente el nombre y apellido",
+    duration: 3000,  
+    newWindow: true,
+    close: true,
+    gravity: "bottom", 
+    position: "center",
+    stopOnFocus: true, 
+    style: {
+      background: "linear-gradient(to right, #00b09b, #96c93d)",
+    },
+    onClick: function(){} 
+  }).showToast();
+  
 }
 
 // FUNCIÓN DE ERROR CÓDIGO DE SEGURIDAD
 function SWEETerrorCod () {
-  Swal.fire({
-    icon: 'error',
-    title: 'Oops...',
-    text: 'Revisar que sean 3 los números ingresados para el código de seguridad',    
-  })
+  Toastify({
+    text: "Revisar que sean 3 los números ingresados para el código de seguridad",
+    duration: 3000,  
+    newWindow: true,
+    close: true,
+    gravity: "bottom", 
+    position: "center",
+    stopOnFocus: true, 
+    style: {
+      background: "linear-gradient(to right, #00b09b, #96c93d)",
+    },
+    onClick: function(){} 
+  }).showToast();
+
 }
 
 // FUNCIÓN DE ERROR FECHA DE VENCIMIENTO
 function SWEETerrorFecha () {
-  Swal.fire({
-    icon: 'error',
-    title: 'Oops...',
-    text: 'Revisar que sean 4 los números ingresados para la fecha de vencimiento',    
-  })
+  Toastify({
+    text: "Revisar que sean 4 los números ingresados para la fecha de vencimiento",
+    duration: 3000,  
+    newWindow: true,
+    close: true,
+    gravity: "bottom", 
+    position: "center",
+    stopOnFocus: true, 
+    style: {
+      background: "linear-gradient(to right, #00b09b, #96c93d)",
+    },
+    onClick: function(){}
+  }).showToast();
+ 
 }
 
 // FUNCIÓN DE ERROR EMAIL
 function SWEETerrorEmail () {
-  Swal.fire({
-    icon: 'error',
-    title: 'Oops...',
-    text: 'Escribe correctamente el email',    
-  })
+  Toastify({
+    text: "Escribe correctamente el email",
+    duration: 3000,  
+    newWindow: true,
+    close: true,
+    gravity: "bottom", 
+    position: "center",
+    stopOnFocus: true, 
+    style: {
+      background: "linear-gradient(to right, #00b09b, #96c93d)",
+    },
+    onClick: function(){} 
+  }).showToast();
+ 
 }
 
 // FUNCIÓN DE ERROR NÚMERO DE CONTACTO
 function SWEETerrorContacto () {
-  Swal.fire({
-    icon: 'error',
-    title: 'Oops...',
-    text: 'Escribe correctamente el número de contacto',    
-  })
+  Toastify({
+    text: "Escribe correctamente el número de contacto",
+    duration: 3000,  
+    newWindow: true,
+    close: true,
+    gravity: "bottom", 
+    position: "center",
+    stopOnFocus: true, 
+    style: {
+      background: "linear-gradient(to right, #00b09b, #96c93d)",
+    },
+    onClick: function(){} 
+  }).showToast();
+
 }
 
 function SWEERcarritoError () {
-  Swal.fire({
-    icon: 'error',
-    title: 'Oops...',
-    text: 'Ya contienes entradas de esta banda, elija otra por favor',    
-  })
+  Toastify({
+    text: "Ya contienes entradas de esta banda, elija otra por favor",
+    duration: 3000,  
+    newWindow: true,
+    close: true,
+    gravity: "bottom", 
+    position: "center",
+    stopOnFocus: true, // Prevents dismissing of toast on hover
+    style: {
+      background: "linear-gradient(to right, #00b09b, #96c93d)",
+    },
+    onClick: function(){} // Callback after click
+  }).showToast();
+    
 }
  
 // FUNCIÓN ELIMINANDO CARRITO SWEET ALERT 2
 function SWEETeliminandoCarrito () {
 
   llenarCarrito.splice(0, llenarCarrito.length);
-  total = 0;
+  total = 0; 
 
   Swal.fire({    
     title: '¿Estás seguro de eliminar todo el carrito?',   
@@ -192,9 +263,9 @@ function confirmandoCompra () {
   }).then((result) => {
     if (result.isConfirmed) {     
       Swal.fire({
-        title: `Gracias por su compra ${nombreYApellidoStrVuelta}`,   
+        title: `Gracias por tu compra ${nombreYApellidoStrVuelta}`,   
         icon: 'success',
-        text: 'Corroboramos los datos ingresados y nos pondremos en contacto para informarle novedades!',        
+        text: 'Chequeamos los datos ingresados y nos ponemos en contacto, hasta la próxima!',        
         confirmButtonColor: '#3085d6',       
         confirmButtonText: 'Aceptar'
       }).then((result) => {
